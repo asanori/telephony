@@ -176,7 +176,7 @@ ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-chan-mobile),)
 	--with-bluetooth="$(STAGING_DIR)/usr"
 else
   CONFIGURE_ARGS+= \
-	--without-bluetooth \
+	--without-bluetooth 
 endif
 ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-curl),)
   CONFIGURE_ARGS+= \
