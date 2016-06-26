@@ -126,11 +126,11 @@ AST_CFG_FILES:= \
 	asterisk.conf acl.conf ccss.conf extconfig.conf \
 	extensions.conf features.conf indications.conf \
 	logger.conf manager.conf modules.conf res_config_sqlite3.conf \
-	rtp.conf sip_notify.conf sip.conf udptl.conf users.conf chan_mobile.conf
+	rtp.conf sip_notify.conf sip.conf udptl.conf users.conf
 AST_EMB_MODULES:=\
 	app_dial app_echo app_macro app_playback codec_ulaw format_pcm func_callerid \
 	func_logic func_strings func_timeout chan_sip chan_local pbx_config \
-	res_crypto res_http_websocket res_rtp_asterisk res_rtp_multicast chan_mobile
+	res_crypto res_http_websocket res_rtp_asterisk res_rtp_multicast
 
 define Package/asterisk11/install
 $(call Package/asterisk11/install/lib,$(1),libasteriskssl)
@@ -239,7 +239,7 @@ CONFIGURE_ARGS+= \
 	--build=$(GNU_HOST_NAME) \
 	--host=$(GNU_TARGET_NAME) \
 	--target=$(GNU_TARGET_NAME) \
-        --with-bluetooth="$(STAGING_DIR)/usr" \
+        --without-bluetooth \
 	--without-cap \
 	--without-curses \
 	--with-gsm=internal \
