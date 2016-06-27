@@ -174,7 +174,13 @@ else
 	--without-pri \
 	--without-tonezone
 endif
-
+ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-chan-mobile),)
+  CONFIGURE_ARGS+= \
+	--with-bluetooth="$(STAGING_DIR)/usr" 
+else
+  CONFIGURE_ARGS+= \
+	--without-bluetooth
+endif
 ifneq ($(SDK)$(CONFIG_PACKAGE_asterisk11-curl),)
   CONFIGURE_ARGS+= \
 	--with-libcurl="$(STAGING_DIR)/usr"
@@ -378,6 +384,7 @@ $(eval $(call BuildAsterisk11Module,cdr,Provides CDR,Call Detail Record,,/etc/as
 $(eval $(call BuildAsterisk11Module,chan-alsa,ALSA channel,the channel chan_alsa,+alsa-lib,/etc/asterisk/alsa.conf,alsa.conf,chan_alsa,,))
 $(eval $(call BuildAsterisk11Module,chan-agent,Agents proxy channel,an implementation of agents proxy channel,,,,chan_agent,))
 $(eval $(call BuildAsterisk11Module,chan-dahdi,DAHDI channel,DAHDI channel support,+dahdi-tools-libtonezone +kmod-dahdi +libpri,/etc/asterisk/chan_dahdi.conf,chan_dahdi.conf,chan_dahdi,))
+$(eval $(call BuildAsterisk11Module,chan-mobile,BLUETOOTH channel,BLUETOOTH channel support,+alsa-lib +bluez-libs,/etc/asterisk/chan_mobile.conf,chan_mobile.conf,chan_mobile,))
 $(eval $(call BuildAsterisk11Module,chan-iax2,IAX2 channel,IAX support,+asterisk11-res-timing-timerfd,/etc/asterisk/iax.conf /etc/asterisk/iaxprov.conf,iax.conf iaxprov.conf,chan_iax2,))
 $(eval $(call BuildAsterisk11Module,chan-mgcp,MGCP channel,the channel chan_mgcp,,/etc/asterisk/mgcp.conf,mgcp.conf,chan_mgcp,))
 $(eval $(call BuildAsterisk11Module,chan-motif,Jingle channel,Motif Jingle Channel Driver,+asterisk11-res-xmpp,/etc/asterisk/motif.conf /etc/asterisk/jingle.conf,motif.conf jingle.conf,chan_motif,))
