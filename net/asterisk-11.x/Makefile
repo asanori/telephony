@@ -240,7 +240,6 @@ CONFIGURE_ARGS+= \
 	--build=$(GNU_HOST_NAME) \
 	--host=$(GNU_TARGET_NAME) \
 	--target=$(GNU_TARGET_NAME) \
-
 	--without-cap \
 	--without-curses \
 	--with-gsm=internal \
